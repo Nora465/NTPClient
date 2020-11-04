@@ -1,4 +1,5 @@
 # NTPClient
+# POUR MOI : NE PAS SUPPRIMER CETTE LIB, EST UTILISE DANS PILOTAGECHAUDIEREV2.0
 
 [![Build Status](https://travis-ci.org/arduino-libraries/NTPClient.svg?branch=master)](https://travis-ci.org/arduino-libraries/NTPClient)
 
