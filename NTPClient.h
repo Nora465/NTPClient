@@ -65,14 +65,14 @@ class NTPClient {
      *
      * @return true if time was updated, false if not (or NTPServer timeout)
      */
-    bool update();
+    bool update(uint16_t timeout = 1000);
 
     /**
      * This will force the update from the NTP Server.
      *
      * @return true on success, false on failure
      */
-    bool forceUpdate();
+    bool forceUpdate(uint16_t timeout = 1000);
 
     int getDay() const;
     int getHours() const;
