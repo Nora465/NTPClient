@@ -91,19 +91,19 @@ bool NTPClient::forceUpdate(uint16_t timeout) {
     this->_udp->flush();
   }
   
-  unsigned long current = millis();
-  
   this->sendNTPPacket();
 
+  unsigned long beforeReadMillis = millis();
+  
   // Wait till data is there or timeout...
   int cb = 0;
   do {
     delay ( 10 );
     cb = this->_udp->parsePacket();
-    if (millis() - current > timeout) return false; // timeout after xx ms (default is 1000)
+    if (cb == 0 && millis() - beforeReadMillis > timeout) return false; // timeout after xx ms (default is 1000)
   } while (cb == 0);
 
-  this->_lastUpdate = millis() - (10 * (timeout + 1)); // Account for delay in reading the time
+  this->_lastUpdate = beforeReadMillis; // Account for delay in reading the time
 
   this->_udp->read(this->_packetBuffer, NTP_PACKET_SIZE);
 
